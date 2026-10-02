@@ -267,9 +267,27 @@ GET /jobs/{job_id}/matches
 
 Returns a ranked list of candidates that match the specified job, with scores and reasons.
 
-**Example:**
+**Example Request:**
 ```bash
 curl http://localhost:8000/jobs/1/matches
+```
+
+**Example Response:**
+```json
+[
+  {
+    "candidate_id": 1,
+    "candidate_name": "Sherlock H.",
+    "score": 92.5,
+    "reason": "Matches all required skills (3/3), exceeds the 3-year experience minimum, and fits the culture on 'analytical'."
+  },
+  {
+    "candidate_id": 9,
+    "candidate_name": "Sheldon C.",
+    "score": 45.0,
+    "reason": "Matches 1 of 3 required skills, exceeds the 3-year experience minimum, and has no culture-keyword overlap."
+  }
+]
 ```
 
 ---
@@ -281,9 +299,21 @@ GET /candidates/{candidate_id}/matches
 
 Returns a ranked list of jobs that match the specified candidate, with scores and reasons.
 
-**Example:**
+**Example Request:**
 ```bash
 curl http://localhost:8000/candidates/1/matches
+```
+
+**Example Response:**
+```json
+[
+  {
+    "job_id": 1,
+    "job_title": "Backend Detective",
+    "score": 92.5,
+    "reason": "Matches all required skills (3/3), exceeds the 3-year experience minimum, and fits the culture on 'analytical'."
+  }
+]
 ```
 
 ---
@@ -295,9 +325,63 @@ GET /matches/best
 
 Returns the best matching candidate for each job opening.
 
-**Example:**
+**Example Request:**
 ```bash
 curl http://localhost:8000/matches/best
+```
+
+**Example Response:**
+```json
+[
+  {
+    "job_id": 1,
+    "job_title": "Backend Detective",
+    "candidate_id": 1,
+    "candidate_name": "Sherlock H.",
+    "score": 92.5,
+    "reason": "Matches all required skills (3/3), exceeds the 3-year experience minimum, and fits the culture on 'analytical'."
+  },
+  {
+    "job_id": 2,
+    "job_title": "Rapid Prototyping Engineer",
+    "candidate_id": 6,
+    "candidate_name": "Rick S.",
+    "score": 85.0,
+    "reason": "Matches all required skills (2/2), exceeds the 2-year experience minimum, and has no culture-keyword overlap."
+  },
+  {
+    "job_id": 3,
+    "job_title": "Developer Relations Lead",
+    "candidate_id": 7,
+    "candidate_name": "Elle W.",
+    "score": 85.0,
+    "reason": "Matches all required skills (2/2), exceeds the 2-year experience minimum, and has no culture-keyword overlap."
+  },
+  {
+    "job_id": 4,
+    "job_title": "Engineering Manager, Chaos Team",
+    "candidate_id": 4,
+    "candidate_name": "Leslie K.",
+    "score": 52.5,
+    "reason": "Matches 1 of 3 required skills, exceeds the 5-year experience minimum, and fits the culture on 'organized'."
+  },
+  {
+    "job_id": 5,
+    "job_title": "Incident Commander",
+    "candidate_id": 12,
+    "candidate_name": "Olivia P.",
+    "score": 87.9,
+    "reason": "Matches all required skills (3/3), exceeds the 4-year experience minimum, and fits the culture on 'decisive'. Score reduced: available in 2 weeks."
+  },
+  {
+    "job_id": 6,
+    "job_title": "Sales Engineer",
+    "candidate_id": 15,
+    "candidate_name": "Dwight S.",
+    "score": 65.0,
+    "reason": "Matches 2 of 3 required skills, exceeds the 3-year experience minimum, and has no culture-keyword overlap."
+  }
+]
 ```
 
 ---
